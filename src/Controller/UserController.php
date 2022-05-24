@@ -18,6 +18,7 @@ class UserController extends AbstractController
     {
         return $this->render('user/index.html.twig', [
             'users' => $userRepository->findAll(),
+            'controller_name' => 'Liste de utilisateurs',
         ]);
     }
 
@@ -31,11 +32,12 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $userRepository->add($user, true);
 
-            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_compte', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('user/new.html.twig', [
             'user' => $user,
+            'controller_name' => 'Inscription',
             'form' => $form,
         ]);
     }
@@ -45,6 +47,7 @@ class UserController extends AbstractController
     {
         return $this->render('user/show.html.twig', [
             'user' => $user,
+            'controller_name' => 'Mon Compte',
         ]);
     }
 
@@ -62,6 +65,7 @@ class UserController extends AbstractController
 
         return $this->renderForm('user/edit.html.twig', [
             'user' => $user,
+            'controller_name' => 'Modifier mon compte',
             'form' => $form,
         ]);
     }

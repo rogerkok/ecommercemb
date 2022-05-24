@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
@@ -16,7 +17,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 180, unique: true)]
+    #[ORM\Column(type: 'string', length: 60, unique: true)]
     private $email;
 
     #[ORM\Column(type: 'json')]
@@ -25,10 +26,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string')]
     private $password;
 
-    #[ORM\Column(type: 'string', length: 60, unique: true)]
+    #[ORM\Column(type: 'string', length: 20, unique: true)]
+    /**
+     * @Assert\Length(
+     *      min = 4,
+     *      max = 20,
+     *      minMessage = "Votre nom d'utilisateur doit avoir au moin {{ limit }} caractères",
+     *      maxMessage = "Votre nom d'utilisateur ne peut pas dépasser {{ limit }} caractères"
+     * )
+     */
     private $username;
 
-    #[ORM\Column(type: 'string', length: 75, nullable:true)]
+    #[ORM\Column(type: 'string', length: 60, nullable:true)]
     private $nom;
 
     #[ORM\Column(type: 'string', length: 100, nullable:true)]
