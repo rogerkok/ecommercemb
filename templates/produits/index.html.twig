@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% block title %}Boutique MB - {{controller_name}}{% endblock %}
+
+{% block contenu %}
+    <h1>Nos Produits</h1>
+      <div class="row">
+          {% for produit in produits %}
+             <div class="col-md-4"> 
+                  <div class="product-item text-center"> 
+                       <img src="/produits/{{produit.ilustration}}" alt="{{produit.nom}} " class="img-fluid">
+                        <h5>{{produit.nom}} </h5>
+                         <span class="product-subtitle">{{produit.subtitle}} </span>
+                         <span class="product-price">{{produit.prix/100}}  F CFA </span>
+                  </img>
+             </div>  </div>
+          {% endfor%}
+      </div>
+{% endblock %}
