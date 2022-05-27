@@ -2,11 +2,37 @@
     color: white;
 
 }
+body{
+    position: relative;
+}
 .footer-custom{
     text-align: center;
-    position: fixed;
-    bottom: 0;
+    position: absolute;
+    
     width: 100%;
     background-color: #dfeaff;
     padding-top: 25px;
+}
+.produtct-item h5{
+    text-transform: uppercase;
+    font-size: 15px;
+    margin-bottom: 1px;
+}
+.produtct-item{
+    margin-top: 15px;
+}
+.produtct-item  .produtct-subtitle{
+    font-size: 14px;
+    display: block;
+    margin-bottom: 10px;
+}
+.produtct-item .produtct-price{
+    font-size: 15px;
+    font-weight: bold;
+}
+.produtct-container{
+    margin-bottom: 150px;
+}
+.product-single-price{
+    font-size: 16px;
 }

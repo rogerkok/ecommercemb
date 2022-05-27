@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+{% block title %}Boutique MB - {{controller_name}}{% endblock %}
+
+{% block contenu %}
+
+ 
+          <h1>Mon panier</h1>
+            Les produits de mon panier
+            <br/> <br/>
+       
+            <table class="table table-bordered table-striped">
+  <thead>
+    <tr style="text-align:center;">
+      <th scope="col" colspan="2" style="text-align:center;">Produit</th>
+      <th scope="col">Quantité</th>
+      <th scope="col">Prix</th>
+      <th scope="col">Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% set total = null %}
+      {% for produit in cart %}
+    <tr style="text-align:center;">
+      <th><img src="/produits/{{produit.produit.ilustration}}" alt="{{produit.produit.nom}} " height="75px">   
+    </th>
+         <td> <b>{{produit.produit.nom}}</b> <br/>
+                {{produit.produit.subtitle}}</b>
+      <td>{{produit.quantite}} </td>
+      <td>{{(produit.produit.prix/100)|number_format(2, ',', '.')}}   F CFA </td>
+      <td>{{(produit.produit.prix*produit.quantite/100)|number_format(2, ',', '.')}}   F CFA</td>
+    </tr>
+    {% set total = total + (produit.produit.prix*produit.quantite) %}
+    {% endfor%}
+  </tbody>
+</table>
+<div class="text-right mb-5">
+      <b>Nombre de produit : </b> {{cart|length}}<br/>    
+      <b>Total panier : </b> {{(total/100)|number_format(2, ',', '.')}}   F CFA 
+</div>
+{% endblock%}
