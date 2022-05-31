@@ -7,7 +7,7 @@
           <h1>Mon panier</h1>
             Les produits de mon panier
             <br/> <br/>
-       
+            {% if cart|length > 0 %}
             <table class="table table-bordered table-striped">
   <thead>
     <tr style="text-align:center;">
@@ -25,16 +25,28 @@
     </th>
          <td> <b>{{produit.produit.nom}}</b> <br/>
                 {{produit.produit.subtitle}}</b>
-      <td>{{produit.quantite}} </td>
+      <td> <a href="{{path('app_panier_decrease', {'id':produit.produit.id})}} " > <img src="{{asset('assets/img/minus.png')}}"  height="12px">   
+         </a> {{produit.quantite}}   <a href="{{path('app_panier_add', {'id':produit.produit.id})}} " > <img src="{{asset('assets/img/plus.png')}}"  height="12px">   
+         </a></td>
       <td>{{(produit.produit.prix/100)|number_format(2, ',', '.')}}   F CFA </td>
       <td>{{(produit.produit.prix*produit.quantite/100)|number_format(2, ',', '.')}}   F CFA</td>
+       <td>
+         <a href="{{path('app_panier_delete', {'id':produit.produit.id})}} " > <img src="{{asset('assets/img/delete.png')}}"  height="18px">   
+         </a>
+        </td>
     </tr>
     {% set total = total + (produit.produit.prix*produit.quantite) %}
     {% endfor%}
   </tbody>
 </table>
+
 <div class="text-right mb-5">
       <b>Nombre de produit : </b> {{cart|length}}<br/>    
       <b>Total panier : </b> {{(total/100)|number_format(2, ',', '.')}}   F CFA 
+      <a href="{{path('app_panier')}} " class="btn btn-success btn-block mt-3">  Valider mon panier</a> 
 </div>
+{% else %}
+<hr>
+Vote panier est vide.
+{% endif%}
 {% endblock%}

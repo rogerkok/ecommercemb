@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Boutique Africaine - {{controller_name}}{% endblock %}
+
+{% block contenu %}
+   
+ <a href="{{ path('app_adresse_new') }}" class="btn btn-info btn-sm float-right">Ajouter une adresse</a>
+    <h1>Mes adresses</h1>
+    <hr>
+  <a  class="btn btn-success" href="{{path('app_compte')}} ">Retour</a>
+
+{% if app.user.adresses|length == 0%}
+<p class="text-center">Vous n'avez pas encore ajouter d'adresse. </p>
+
+{% else %}
+<div class="row">
+   {% for adresse in app.user.adresses %}
+  
+    <div class="col-md-4">
+        <div class="card" style="width: 18rem;">
+
+  <div class="card-body">
+    <h5 class="card-title">{{ adresse.nomadr }}</h5>
+    <p class="card-text"> {{ adresse.adresse }}<br/>
+        BP: {{ adresse.bp }} - {{ adresse.ville }} - {{ adresse.pays }}
+    </p>
+   <a href="{{ path('app_adresse_edit', {'id': adresse.id}) }}" class="btn btn-sm btn-primary">Modifier</a>
+               <a href="#" class="btn   float-center">   {{ include('compte/adresse/_delete_form.html.twig') }}  </a>
+  </div>
+</div></div>
+{% endfor %}
+</div>
+{% endif %}
+  
+
+{% endblock %}

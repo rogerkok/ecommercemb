@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Carrier;
 use App\Entity\Categorie;
 use App\Entity\Produit;
 use App\Entity\User;
@@ -39,6 +40,8 @@ class DashboardController extends AbstractDashboardController
     {
         return Dashboard::new()
             ->setTitle('Boutique Africaine');
+
+            
     }
 
     public function configureMenuItems(): iterable
@@ -47,5 +50,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-user', User::class);
         yield MenuItem::linkToCrud('Catégories', 'fas fa-list', Categorie::class);
         yield MenuItem::linkToCrud('Produits', 'fas fa-tag', Produit::class);
+         yield MenuItem::linkToCrud('Transporteurs', 'fas fa-truck', Carrier::class);
     }
 }

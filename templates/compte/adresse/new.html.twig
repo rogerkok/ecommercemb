@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Boutique Africaine - {{controller_name}}{% endblock %}
+
+{% block contenu %}
+    <h1> Ajouter une adresse</h1>
+    <a  class="btn btn-success" href="{{path('app_compte')}} ">Retourner à mon compte</a><br/>
+<hr>
+    {{ include('compte/adresse/_form.html.twig') }}
+
+   
+{% endblock %}

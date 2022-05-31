@@ -36,3 +36,7 @@ body{
 .product-single-price{
     font-size: 16px;
 }
+.cart-icon{
+    height: 25px;
+    margin-left: 20px;
+}

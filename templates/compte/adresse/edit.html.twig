@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Boutique Africaine - {{controller_name}}{% endblock %}
+
+{% block contenu %}
+
+    <h1>Modidifier mon addresse</h1>
+
+    {{ include('compte/adresse/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+   
+
+{% endblock %}
