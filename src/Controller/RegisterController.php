@@ -22,6 +22,8 @@ class RegisterController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $hashedPassword = $passwordHasher->hashPassword($user, $user->getPassword());
             $user->setPassword($hashedPassword);
+            #$roles[] = 'ROLE_SUPER_ADMIN';
+            #$user->setRoles($roles);
             $userRepository->add($user, true);
 
             return $this->redirectToRoute('app_login', [], Response::HTTP_SEE_OTHER);

@@ -33,7 +33,7 @@ class AdresseController extends AbstractController
         $adresse->setClient($this->getUser());
             $adresseRepository->add($adresse, true);
 
-            return $this->redirectToRoute('app_adresse-index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_adresse_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('compte/adresse/new.html.twig', [
