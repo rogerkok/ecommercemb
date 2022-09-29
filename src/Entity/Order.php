@@ -27,13 +27,16 @@ class Order
     private $carrierName;
 
     #[ORM\Column(type: 'bigint')]
-    private $prix;
+    private $carrierprice;
 
     #[ORM\Column(type: 'text')]
     private $delivery;
 
     #[ORM\OneToMany(mappedBy: 'myorder', targetEntity: OrderDetails::class)]
     private $orderDetails;
+
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private $ispaied;
 
     public function __construct()
     {
@@ -81,14 +84,14 @@ class Order
         return $this;
     }
 
-    public function getPrix(): ?string
+    public function getCarrierprice(): ?string
     {
-        return $this->prix;
+        return $this->carrierprice;
     }
 
-    public function setPrix(string $prix): self
+    public function setCarrierprice(string $carrierprice): self
     {
-        $this->prix = $prix;
+        $this->carrierprice = $carrierprice;
 
         return $this;
     }
@@ -131,6 +134,18 @@ class Order
                 $orderDetail->setMyorder(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isIspaied(): ?bool
+    {
+        return $this->ispaied;
+    }
+
+    public function setIspaied(?bool $ispaied): self
+    {
+        $this->ispaied = $ispaied;
 
         return $this;
     }
