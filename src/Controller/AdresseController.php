@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classe\Cart;
 use App\Entity\Adresse;
 use App\Form\AdresseType;
 use App\Repository\AdresseRepository;
@@ -23,7 +24,7 @@ class AdresseController extends AbstractController
     }
 
     #[Route('/new', name: 'app_adresse_new', methods: ['GET', 'POST'])]
-    public function add(Request $request, AdresseRepository $adresseRepository): Response
+    public function add(Cart $cart,Request $request, AdresseRepository $adresseRepository): Response
     {
         $adresse = new Adresse();
         $form = $this->createForm(AdresseType::class, $adresse);
@@ -32,8 +33,12 @@ class AdresseController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
         $adresse->setClient($this->getUser());
             $adresseRepository->add($adresse, true);
-
-            return $this->redirectToRoute('app_adresse_index', [], Response::HTTP_SEE_OTHER);
+            if($cart->get())
+            {
+                return $this->redirectToRoute('app_order');
+            }else{
+                return $this->redirectToRoute('app_adresse_index', [], Response::HTTP_SEE_OTHER);
+            }
         }
 
         return $this->renderForm('compte/adresse/new.html.twig', [

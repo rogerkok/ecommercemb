@@ -40,3 +40,8 @@ body{
     height: 25px;
     margin-left: 20px;
 }
+.block-small {
+
+max-width: 600px;
+margin: 0 auto;
+}

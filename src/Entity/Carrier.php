@@ -62,4 +62,8 @@ class Carrier
 
         return $this;
     }
+    public function __toString()
+    {
+        return $this->getNom().'[br]'.$this->getDescription().'[br]'.$this->getTarifs().' F CFA';
+    }
 }

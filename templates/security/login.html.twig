@@ -4,7 +4,8 @@
 {% block style%}
 <link href="{{ asset('assets/css/boutiques.css')}}" rel="stylesheet">
 {% endblock %}
-{% block contenu%}
+{% block contenu %}
+<div class="block-small">
 <form method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -37,8 +38,11 @@
         </div>
     #}
 <br>
-    <button class="btn btn-lg btn-primary" type="submit">
+    <button class="btn btn-lg btn-primary btn-block mt-3" type="submit">
        Se connecter
     </button>
+    <hr>
+    <p class="text-center"> ou souhaitez-vous  <a href="{{ path('app_register') }}">créer un compte</a> ?</p>
 </form>
+</div>
 {% endblock %}

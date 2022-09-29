@@ -1,20 +1,52 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello OrderController!{% endblock %}
+{% block title %}Valider ma commande{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{% block contenu %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h2 class="text-center"> Valider ma commande</h2>
+    <p class="text-center"> Choisissez vos préferences avant de valider votre commande</p>
+    <hr>
+    <div class="row">
+    <div class="col-md-6">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/roger/projects/commercemb/src/Controller/OrderController.php'|file_link(0) }}">src/Controller/OrderController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/roger/projects/commercemb/templates/order/index.html.twig'|file_link(0) }}">templates/order/index.html.twig</a></code></li>
-    </ul>
-</div>
+    {% set formhtml %}
+    {{form(form)}}
+    {% endset %}
+    {{formhtml|replace({'[br]' : '<br/>'})|raw }}
+    </div>
+    <div class="col-md-6">
+    <div class="text-center">
+    <b> Recap de ma commande</b><br>
+    Retrouver le récapitulatif de votre commande
+    </div>
+    <div class="order-summary">
+    
+       
+    {% set total = null %}
+    {% for key,produit in cart %}
+    <div class="row {% if key > 0 %} mt-2 {% endif %}">
+    <div class="col-2">
+    <img src="/produits/{{produit.produit.ilustration}}" alt="{{produit.produit.nom}} " height="75px">   
+    </div>
+    <div class="col-8 my-auto">
+    <b>{{produit.produit.nom}}</b> <br/>
+    {{produit.produit.subtitle}}</b>
+    </div>
+    <div class="col-2 my-auto">
+    x{{produit.quantite}} 
+    </div>
+    </div>
+ 
+    {% endfor%}
+ 
+    <b> Payer ma commande</b>
+    </div>
+
+    </div>
+    
+    </div>
+
+   
+
 {% endblock %}

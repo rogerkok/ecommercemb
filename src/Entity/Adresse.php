@@ -143,4 +143,8 @@ class Adresse
 
         return $this;
     }
+    public function __toString()
+    {
+        return $this->getNomadr().'[br]'.$this->getAdresse().'[br]'.$this->getVille().' - '.$this->getPays();
+    }
 }

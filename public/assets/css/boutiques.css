@@ -7,3 +7,9 @@
     background-color: #dfeaff;
     padding-top: 25px;
 }
+
+.block-small {
+
+    max-width: 600px;
+    margin: 0 auto;
+    }
